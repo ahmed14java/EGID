@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/main">
+<head>
+<meta charset="UTF-8" />
+<title>View Film</title>
+</head>
+<body>
+	
+	<div layout:fragment="content">
+		
+		<div class="container" style="margin-top: 5em; margin-bottom: 3em;">
+			<form class="form-horizontal">
+				<label class="col-sm-2 control-label"><strong>Title:</strong></label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="${film.title}"></p>
+				</div>
+				<label class="col-sm-2 control-label"><strong>Description:</strong></label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:utext="${film.description}"></p>
+				</div>
+				
+				<label class="col-sm-2 control-label"><strong>Release Year:</strong></label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="${film.releaseYear}"></p>
+				</div>
+				<label class="col-sm-2 control-label"><strong>Length:</strong></label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:utext="${film.length}"></p>
+				</div>
+				
+				<label class="col-sm-2 control-label"><strong>Last update:</strong></label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="${#calendars.format(film.lastUpdate,'M/dd/yyyy hh:mm:ss a')}"></p>
+				</div>
+				<label class="col-sm-2 control-label"><strong>Rating:</strong></label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="${film.rating}"></p>
+				</div>
+				<label class="col-sm-2 control-label"><strong>Language:</strong></label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="${film?.language1?.name}"></p>
+				</div>
+				<label class="col-sm-2 control-label"><strong>Original Language:</strong></label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="${film?.language2?.name}"></p>
+				</div>
+				<label class="col-sm-2 control-label"><strong>Special Feature:</strong></label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="${film.specialFeatures}"></p>
+				</div>
+				<label class="col-sm-2 control-label"><strong>Rental Rate:</strong></label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="${film.rentalRate}"></p>
+				</div>
+				<label class="col-sm-2 control-label"><strong>Rental Duration:</strong></label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="${film.rentalDuration}"></p>
+				</div>
+				<label class="col-sm-2 control-label"><strong>Replace cost:</strong></label>
+				<div class="col-md-10">
+					<p class="form-control-static" th:text="${film.replaceCost}"></p>
+				</div>
+			</form>
+			<a th:href="@{/allFilm}" class="btn btn-default">Back</a>
+		</div>
+		
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/main">
+<head>
+<meta charset="UTF-8" />
+<title>All Films</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-4" style="margin-left: 15em; margin-top: 3em;">
+					<form th:action="@{/createFilm}" th:object="${film}" method="post" style="margin-bottom: 1em;">
+						<input type="hidden" th:field="*{filmId}" />
+						<div class="form-group row">
+							<label for="title" class="col-sm-4 col-form-label">Title:</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="title" th:field="*{title}" placeholder="Enter Title"/>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="description" class="col-sm-4 col-form-label">Description:</label>
+							<div class="col-sm-8">
+								<textarea class="form-control" 
+										  id="description" 
+									      th:field="*{description}" placeholder="Enter Descriptio" rows="3" cols=""></textarea> 
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="year" class="col-sm-4 col-form-label">Release Year:</label>
+							<div class="col-sm-6">
+								<input class="form-control"
+										  id="year" 
+										  type="text"
+									      th:field="*{releaseYear}" placeholder="Enter Release year"></input> 
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="length" class="col-sm-4 col-form-label">Length:</label>
+							<div class="col-sm-6">
+								<input class="form-control" 
+										  id="length" 
+										  type="number"
+									      th:field="*{length}" placeholder="Enter Length"></input> 
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="rating" class="col-sm-4 col-form-label">Rating:</label>
+							<div class="col-sm-6">
+								<select class="form-control" th:field="*{rating}">
+									<option th:each="rating : ${ratings}" th:value="${rating}" th:text="${rating}"></option>
+								</select> 
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="rating" class="col-sm-4 col-form-label">Language:</label>
+							<div class="col-md-6">
+								<select class="form-control" th:field="*{language1}">
+									<option value="">Select language</option>
+									<option th:each="language : ${languages}" th:value="${language.languageId}" th:text="${language.name}"></option>
+								</select> 
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="rating" class="col-sm-4 col-form-label">Original Language:</label>
+							<div class="col-md-6">
+								<select class="form-control" th:field="*{language2}">
+									<option value="">Select language</option>
+									<option th:each="language : ${languages}" th:value="${language.languageId}" th:text="${language.name}"></option>
+								</select> 
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="rating" class="col-sm-4 col-form-label">Special Feature:</label>
+							<div class="col-sm-6">
+								<select class="form-control" multiple="multiple" th:field="*{specialFeatures}">
+									<option th:each="feature : ${features}" 
+									        th:value="${feature}" 
+									        th:text="${feature}">Features</option>
+								</select> 
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="ranta" class="col-sm-4 col-form-label">Rantal Rate:</label>
+							<div class="col-sm-6">
+								<input class="form-control" 
+										  id="rantal" 
+										  type="text"
+									      th:field="*{rentalRate}" placeholder="Enter Rantal rate"></input> 
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="duration" class="col-sm-4 col-form-label">Rantal Duration:</label>
+							<div class="col-sm-6">
+								<input class="form-control" 
+										  id="duration" 
+										  type="number"
+									      th:field="*{rentalDuration}" placeholder="Enter Length"></input> 
+							</div>
+						</div>
+						
+							<div class="form-group row">
+							<label for="cost" class="col-sm-4 col-form-label">Replace Cost:</label>
+							<div class="col-sm-6">
+								<input class="form-control" 
+										  id="cost" 
+										  type="text"
+									      th:field="*{replaceCost}" placeholder="Enter replace cost"></input> 
+							</div>
+						</div>
+						<button type="submit" class="btn btn-primary">Save</button> | 
+						<a th:href="@{/allFilm}" class="btn btn-danger">Cancel</a>
+					</form>
+					<br/><br/><br/>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

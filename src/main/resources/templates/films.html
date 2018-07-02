@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/main">
+<head>
+<meta charset="UTF-8" />
+<title>All Films</title>
+</head>
+<body>
+	
+	<div layout:fragment="content">
+		<div class="container">
+			<a th:href="@{/createFilm}"
+			style="margin-bottom: -12.5em; margin-left: -6.2em;" 
+			class="btn btn-success">Create New Film</a>
+		</div>
+		<div class="card border-secondary"
+			style="margin-top: 100px; width: 100em; margin-left: 12em;">
+			<div class="card-body" style="position: absolute; margin-left: -7em;">
+				<h4 class="card-title text-center">All Films</h4>
+
+				<table id="example" class="table table-striped table-hover">
+					<thead style="text-align: center;">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Title</th>
+							<th scope="col">Year</th>
+							<th scope="col">Length</th>
+							<th scope="col">Last_Update</th>
+							<th scope="col">Rating</th>
+							<th scope="col">Language</th>
+							<th scope="col">Original_Language</th>
+							<th scope="col">Special_Feature</th>
+							<th scope="col">Rantal_Rate</th>
+							<th scope="col">Rantal_duration</th>
+							<th scope="col">Replace_Cost</th>
+							<th scope="col">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="film : ${films.content}">
+							<td th:text="${film.filmId}"></td>
+							<td th:text="${film.title}"></td>
+							<td th:text="${film.releaseYear}"></td>
+							<td th:text="${film.length}"></td>
+							<td th:text="${film.lastUpdate}"></td>
+							<td th:text="${film.rating}"></td>
+							<td th:text="${film.language1.name}"></td>
+							<td th:text="${film?.language2?.name}"></td>
+							<td th:text="${film.specialFeatures}"></td>
+							<td th:text="${film.rentalRate}"></td>
+							<td th:text="${film.rentalDuration}"></td>
+							<td th:text="${film.replaceCost}"></td>
+							<td style='white-space: nowrap'>
+								<a th:href="|@{/viewFilm/}${film.filmId}|" class="btn btn-primary">View</a>
+								<a th:href="|@{/updateFilm/}${film.filmId}|" class="btn btn-success">Update</a>
+								<a th:href="|@{/deleteFilm/}${film.filmId}|" class="btn btn-danger">Delete</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<hr />
+				<div>
+					<ul class="pagination">
+						<!-- 						<li th:class="${films.number != 1} ? 'page-item disabled' : ''" -->
+						<!-- 							class="page-item disabled"><a class="page-link" href="#">&laquo;</a> -->
+						<!-- 						</li> -->
+
+						<li class="page-item"
+							th:each="i: ${#numbers.sequence(0,films.totalPages-1)}"
+							th:classappend="${films.number} == ${i} ? 'page-item active': ''">
+							<a th:href="@{/allFilm(page=${i})}" th:text="${i}" class="page-link"></a>
+						</li>
+						<!-- 						<li class="page-item"><a class="page-link" href="#">&raquo;</a> -->
+					</ul>
+				</div>
+
+
+			</div>
+		</div>
+		
+	</div>
+	
+</body>
+</html>
